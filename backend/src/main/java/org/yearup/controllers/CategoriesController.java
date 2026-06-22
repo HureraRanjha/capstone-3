@@ -1,7 +1,9 @@
 package org.yearup.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.yearup.models.Category;
 import org.yearup.models.Product;
@@ -43,10 +45,14 @@ public class CategoriesController
 
     // add the appropriate annotation for a get action
     @GetMapping("/{id}")
-    public Category getById(@PathVariable int id)
+    public ResponseEntity<Category> getById(@PathVariable int id)
     {
         // get the category by id
-        return categoryService.getById(id);
+        Category category = categoryService.getById(id);
+
+        if(category == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(category);
     }
 
     // the url to return all products in category 1 would look like this
@@ -54,16 +60,19 @@ public class CategoriesController
     @GetMapping("{categoryId}/products")
     public List<Product> getProductsById(@PathVariable int categoryId)
     {
-        // get a list of product by categoryId
-        return null;
+        List<Product> products = productService.listByCategoryId(categoryId);
+        return products;
     }
 
     // add annotation to call this method for a POST action
     // add annotation to ensure that only an ADMIN can call this function
+    @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Category> addCategory(@RequestBody Category category)
     {
         // insert the category and return it with status 201 Created
-        return null;
+        Category category1 = categoryService.create(category);
+        return ResponseEntity.status(HttpStatus.CREATED).body(category1);
     }
 
     // add annotation to call this method for a PUT (update) action - the url path must include the categoryId
