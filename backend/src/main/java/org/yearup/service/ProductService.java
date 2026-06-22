@@ -54,6 +54,7 @@ public class ProductService
         existing.setDescription(product.getDescription());
         existing.setSubCategory(product.getSubCategory());
         existing.setFeatured(product.isFeatured());
+        existing.setStock(product.getStock());
         existing.setImageUrl(product.getImageUrl());
         return productRepository.save(existing);
     }
