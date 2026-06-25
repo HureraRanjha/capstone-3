@@ -4,10 +4,7 @@ package org.yearup.controllers;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.yearup.models.Profile;
 import org.yearup.models.User;
 import org.yearup.service.ProfileService;
@@ -17,6 +14,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("profile")
+@PreAuthorize("hasRole('ROLE_USER')")
 @CrossOrigin
 public class ProfileController
 {
@@ -31,7 +29,6 @@ public class ProfileController
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<Profile> getProfile(Principal principal)
     {
         // get the currently logged in username
@@ -42,4 +39,17 @@ public class ProfileController
 
         return ResponseEntity.ok(profileService.getProfile(userId));
     }
+
+    @PutMapping
+    public ResponseEntity<Profile> updateProfile(Principal principal, @RequestBody Profile profile)
+    {
+        // get the currently logged in username
+        String userName = principal.getName();
+        // find database user by username
+        User user = userService.getByUserName(userName);
+        int userId = user.getId();
+
+        return ResponseEntity.ok(profileService.updateProfile(userId, profile));
+    }
+
 }
