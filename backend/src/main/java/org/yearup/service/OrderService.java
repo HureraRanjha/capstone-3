@@ -1,5 +1,6 @@
 package org.yearup.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -24,6 +25,7 @@ public class OrderService
         this.shoppingCartService = shoppingCartService;
     }
 
+    @Transactional
     public Order create(int userId)
     {
         Profile profile = profileService.getProfile(userId);
