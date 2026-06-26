@@ -1,8 +1,11 @@
 package org.yearup.service;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import org.yearup.models.Order;
 import org.yearup.models.Profile;
+import org.yearup.models.ShoppingCart;
 import org.yearup.repository.OrderRepository;
 
 import java.time.LocalDateTime;
@@ -24,6 +27,9 @@ public class OrderService
     public Order create(int userId)
     {
         Profile profile = profileService.getProfile(userId);
+        ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
+
+        if(shoppingCart.getItems().isEmpty())  throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 
         Order order = new Order();
 
