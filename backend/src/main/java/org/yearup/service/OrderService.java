@@ -12,11 +12,13 @@ public class OrderService
 {
     private final OrderRepository orderRepository;
     private final ProfileService profileService;
+    private final ShoppingCartService shoppingCartService;
 
-    public OrderService(OrderRepository orderRepository, ProfileService profileService)
+    public OrderService(OrderRepository orderRepository, ProfileService profileService, ShoppingCartService shoppingCartService)
     {
         this.orderRepository = orderRepository;
         this.profileService = profileService;
+        this.shoppingCartService = shoppingCartService;
     }
 
     public Order create(int userId)
@@ -32,6 +34,8 @@ public class OrderService
         order.setState(profile.getState());
         order.setShippingAmount(20.0);
         order.setDate(LocalDateTime.now().toString());
+
+        shoppingCartService.clearCart(userId);
 
         return orderRepository.save(order);
     }
