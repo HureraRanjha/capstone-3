@@ -1,4 +1,18 @@
-<div class="filter-box">
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-badge"><i class="fa-solid fa-bolt"></i> New season drop</span>
+        <h1>Find your next<br><span class="hero-accent">favorite thing</span></h1>
+        <p>Curated products, honest prices, delivered fast. Browse the collection and fill your cart.</p>
+        <a href="#content" class="btn btn-primary hero-cta">Shop now <i class="fa-solid fa-arrow-down-long"></i></a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="hero-blob hero-blob-1"></span>
+        <span class="hero-blob hero-blob-2"></span>
+    </div>
+</section>
+
+<aside class="filter-box">
     <h3>Filter</h3>
 
     <div class="form-floating mb-3">
@@ -9,12 +23,12 @@
         </select>
         <label for="category-select">Category</label>
     </div>
-    <div>
-        <label for="min-price" class="form-label">Minimum Price: $ <span id="min-price-display">0</span></label>
+    <div class="filter-group">
+        <label for="min-price" class="form-label">Minimum Price: <strong>$<span id="min-price-display">0</span></strong></label>
         <input type="range" class="form-range" id="min-price" min="0" max="1500" value="0" onchange="setMinPrice(this)">
     </div>
-    <div>
-        <label for="max-price" class="form-label">Minimum Price: $ <span id="max-price-display">1500</span></label>
+    <div class="filter-group">
+        <label for="max-price" class="form-label">Maximum Price: <strong>$<span id="max-price-display">1500</span></strong></label>
         <input type="range" class="form-range" id="max-price" min="0" max="1500" value="1500" onchange="setMaxPrice(this)">
     </div>
 
@@ -50,5 +64,5 @@
         <label for="subcategory-select">Color</label>
     </div>
 
-</div>
+</aside>
 <div id="content" class="content"></div>

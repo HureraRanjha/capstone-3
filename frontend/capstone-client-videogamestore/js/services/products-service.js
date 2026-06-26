@@ -4,6 +4,9 @@ class ProductService {
 
     photos = [];
 
+    // becomes true once the price sliders have been sized to the catalog's real max price
+    maxPriceInitialized = false;
+
 
     filter = {
         cat: undefined,
@@ -103,6 +106,8 @@ class ProductService {
                      }
                  })
 
+                 this.initPriceRange(data.products);
+
                  templateBuilder.build('product', data, 'content', this.enableButtons);
 
              })
@@ -114,6 +119,28 @@ class ProductService {
 
                 templateBuilder.append("error", data, "errors")
             });
+    }
+
+    // Size the price sliders to the catalog's actual highest price, once.
+    // Runs on the first (unfiltered) load so the max reflects the full catalog,
+    // not whatever subset a price filter is currently showing.
+    initPriceRange(products)
+    {
+        if(this.maxPriceInitialized) return;
+        if(!products || products.length === 0) return;
+
+        const maxPrice = Math.ceil(Math.max(...products.map(p => p.price)));
+        if(!isFinite(maxPrice) || maxPrice <= 0) return;
+
+        const minSlider  = document.getElementById("min-price");
+        const maxSlider  = document.getElementById("max-price");
+        const maxDisplay = document.getElementById("max-price-display");
+
+        if(minSlider)  { minSlider.max = maxPrice; }
+        if(maxSlider)  { maxSlider.max = maxPrice; maxSlider.value = maxPrice; }
+        if(maxDisplay) { maxDisplay.innerText = maxPrice; }
+
+        this.maxPriceInitialized = true;
     }
 
     enableButtons()

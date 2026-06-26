@@ -102,6 +102,22 @@ class ShoppingCartService {
         this.cart.items.forEach(item => {
             this.buildItem(item, contentDiv)
         });
+
+        // total summary box
+        const summary = document.createElement("div");
+        summary.classList.add("cart-summary");
+
+        const summaryLabel = document.createElement("span");
+        summaryLabel.classList.add("cart-summary-label");
+        summaryLabel.innerText = "Total";
+
+        const totalAmount = document.createElement("span");
+        totalAmount.classList.add("cart-total");
+        totalAmount.innerText = `$${Number(this.cart.total || 0).toFixed(2)}`;
+
+        summary.appendChild(summaryLabel);
+        summary.appendChild(totalAmount);
+        contentDiv.appendChild(summary);
     }
 
     buildItem(item, parent)
@@ -118,7 +134,7 @@ class ShoppingCartService {
         let photoDiv = document.createElement("div");
         photoDiv.classList.add("photo")
         let img = document.createElement("img");
-        img.src = `/images/products/${item.product.imageUrl}`
+        img.src = `./images/products/${item.product.imageUrl}`
         img.addEventListener("click", () => {
             showImageDetailForm(item.product.name, img.src)
         })

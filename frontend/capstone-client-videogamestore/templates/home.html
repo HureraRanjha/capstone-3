@@ -1,4 +1,16 @@
-<div class="filter-box">
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-badge"><i class="fa-solid fa-gamepad"></i> Now playing</span>
+        <h1>Level up your collection</h1>
+        <p>Browse the latest titles across every genre. Filter by category, genre, and price to find your next game.</p>
+        <a href="#content" class="btn btn-primary">Browse games</a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+        <i class="fa-solid fa-gamepad"></i>
+    </div>
+</section>
+
+<aside class="filter-box">
     <h3>Filter</h3>
 
     <div class="form-floating mb-3">
@@ -9,13 +21,13 @@
         </select>
         <label for="category-select">Category</label>
     </div>
-    <div>
-        <label for="min-price" class="form-label">Minimum Price: $ <span id="min-price-display">0</span></label>
-        <input type="range" class="form-range" id="min-price" min="0" max="200" value="0" onchange="setMinPrice(this)">
+    <div class="filter-group">
+        <label for="min-price" class="form-label">Minimum Price: <strong>$<span id="min-price-display">0</span></strong></label>
+        <input type="range" class="form-range" id="min-price" min="0" max="300" value="0" onchange="setMinPrice(this)">
     </div>
-    <div>
-        <label for="max-price" class="form-label">Minimum Price: $ <span id="max-price-display">200</span></label>
-        <input type="range" class="form-range" id="max-price" min="0" max="200" value="200" onchange="setMaxPrice(this)">
+    <div class="filter-group">
+        <label for="max-price" class="form-label">Maximum Price: <strong>$<span id="max-price-display">300</span></strong></label>
+        <input type="range" class="form-range" id="max-price" min="0" max="300" value="300" onchange="setMaxPrice(this)">
     </div>
 
     <div class="form-floating mb-3">
@@ -37,5 +49,5 @@
         <label for="subcategory-select">Genre</label>
     </div>
 
-</div>
+</aside>
 <div id="content" class="content"></div>

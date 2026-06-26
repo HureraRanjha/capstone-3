@@ -1,14 +1,20 @@
 
 {{#loggedin}}
-<div id="links">
-    <img src="/images/logo.svg" alt="videogamestore logo">
-    <a href="#" onclick="loadHome()">Home</a>
-    <a href="#" onclick="editProfile()">Profile</a>
-    <a href="#" onclick="showCart()">View Cart</a>
+<div id="links" class="nav-left">
+    <a href="#" class="brand" onclick="loadHome()">
+        <img src="./images/logo.svg" alt="videogamestore logo">
+        <span class="brand-name">GameStore</span>
+    </a>
+    <nav class="nav-links">
+        <a href="#" onclick="loadHome()"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="#" onclick="editProfile()"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+        <a href="#" onclick="showCart()"><i class="fa-solid fa-bag-shopping"></i><span>Cart</span></a>
+    </nav>
 </div>
 
-<div>
-    Welcome&nbsp;<span style="font-weight: bold">{{username}}</span>&nbsp;|&nbsp;<a href="#" onclick="userService.logout();return false;">logout</a>
+<div class="nav-right">
+    <span class="welcome">Hi,&nbsp;<span class="username">{{username}}</span></span>
+    <a href="#" class="logout-link" onclick="userService.logout();return false;">Logout</a>
     <div class="cart" onclick="showCart()">
         <i class="fa-solid fa-cart-shopping"></i>
         <div id="cart-items">0</div>
@@ -16,12 +22,19 @@
 </div>
 {{/loggedin}}
 {{#loggedout}}
-<div id="links">
-    <img src="/images/logo.svg" alt="videogamestore logo">
-    <a href="#" onclick="loadHome()">Home</a>
+<div id="links" class="nav-left">
+    <a href="#" class="brand" onclick="loadHome()">
+        <img src="./images/logo.svg" alt="videogamestore logo">
+        <span class="brand-name">GameStore</span>
+    </a>
+    <nav class="nav-links">
+        <a href="#" onclick="loadHome()"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    </nav>
 </div>
 
-<div>
-    <a href="#"  onclick="showLoginForm();return false;">login</a>
+<div class="nav-right">
+    <a href="#" class="btn-login" onclick="showLoginForm();return false;">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+    </a>
 </div>
 {{/loggedout}}

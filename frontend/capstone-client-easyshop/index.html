@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EasyShop</title>
 
     <!--  CSS  -->
     <link rel="stylesheet" href="css/lib/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="css/main.css">
 
     <!--  JS  -->
@@ -40,7 +44,42 @@
     <main id="main">
     </main>
 
-    <footer></footer>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="./images/logo.svg" alt="easyshop logo">
+                <span class="brand-name">easyshop</span>
+                <p>Curated products, honest prices, delivered fast.</p>
+            </div>
+            <div class="footer-cols">
+                <div class="footer-col">
+                    <h5>Shop</h5>
+                    <a href="#" onclick="loadHome()">All products</a>
+                    <a href="#" onclick="showCart()">Your cart</a>
+                    <a href="#" onclick="editProfile()">Your profile</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <a href="#">About</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Follow</h5>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 easyshop. All rights reserved.</span>
+            <span>Made with <i class="fa-solid fa-heart"></i> for the capstone.</span>
+        </div>
+    </footer>
 
 
 </body>
